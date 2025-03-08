@@ -33,6 +33,7 @@
     "vite": "^6.2.1"
   },
   "dependencies": {
+    "@pixi/particle-emitter": "^5.0.8",
     "@pixi/sound": "5.2.3",
     "gsap": "^3.12.7",
     "pixi.js": "7.4.3"

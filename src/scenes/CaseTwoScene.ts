@@ -1,10 +1,8 @@
-import { TextStyle, Text, Sprite, Container } from "pixi.js";
+import { TextStyle, Text} from "pixi.js";
 import { Button } from "../core/components/Button";
 import { BaseScene } from "../core/scene/BaseScene";
 import { OrientationType } from "../core/types";
 import { SceneManager } from "../core/scene/SceneManager";
-import { gsap } from "gsap";
-import { SoundManager } from "../core/sound/SoundManager";
 import { DialogManager } from "../managers/DialogManager";
 
 
@@ -19,10 +17,10 @@ export class CaseTwoScene extends BaseScene {
     constructor() {
         super();
         this.initDisplay();
+     
     }
 
     private initDisplay(): void {
-
         this._titleText = new Text('MAGIC WORDS', new TextStyle({ fill: 0xff6900, fontFamily: "sniglet-regular", fontWeight: "bold", fontSize: 72 }));
         this._titleText.anchor.set(0.5);
         this._titleText.position.set(0, -200);
@@ -53,7 +51,7 @@ export class CaseTwoScene extends BaseScene {
    
 
     public onShow(): void {
-        
+       
     }
 
     public onHide(): void {

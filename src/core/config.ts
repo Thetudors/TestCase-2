@@ -18,7 +18,7 @@ export const SPRITES: spriteConfig[] = [
     { alias: "Penny", src: "/assets/sprites/Penny.png" },
     { alias: "Leonard", src: "/assets/sprites/Leonard.png" },
     { alias: "rect", src: "/assets/sprites/rect.png" },
-
+    { alias: "fire", src: "/assets/sprites/fire.png" },
 
 ]
 

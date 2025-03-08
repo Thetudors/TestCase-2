@@ -59,19 +59,17 @@ export class MainScene extends BaseScene {
         this._phoenixFlameButton.scale.set(1.5);
         this._phoenixFlameButton.position.set(0, -300);
         this._phoenixFlameButton.onButtonClick(() => {
-            console.log('Phoenix Flame Button Clicked');
+           SceneManager.instance.switchScene('CaseThreeScene');
         });
     }
 
 
     public onShow(): void {
-        SoundManager.instance.playSound('theme', { loop: true, volume: 0.05 });
     }
 
     public onHide(): void {
 
         this.dispose();
-        SoundManager.instance.stopSound('theme');
     }
 
     public update(delta: number): void {

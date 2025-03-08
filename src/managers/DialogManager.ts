@@ -9,14 +9,12 @@ export class DialogManager extends Container {
     private _dialougePopups!: Map<string, DialogPopup>;
     private _dialogueIndex: number = 0;
 
-
     constructor() {
         super();
 
         this._dialougePopups = new Map<string, DialogPopup>();
         this.loadMagicWords().catch(error => console.error('Failed to initialize:', error)).then(() => {
             this.createDialogPopups();
-            this.showNextDialogue();
         });
     }
 
@@ -24,13 +22,12 @@ export class DialogManager extends Container {
 
     private createDialogPopups(): void {
         this._magicWords.avatars.forEach((avatar, index) => {
-            const dialogPopup = new DialogPopup("rect", new TextStyle({ fill: 0xfafafa, fontFamily: "sniglet-regular" }), avatar.name, avatar.position);
+            const dialogPopup = new DialogPopup("rect", new TextStyle({ fill: 0xfafafa, fontFamily: "sniglet-regular" }), avatar.name);
             dialogPopup.position.set(avatar.position === "right" ? 100 : -100, avatar.position === "right" ? 0 : 200);
-            dialogPopup.hide();
+            // dialogPopup.hide();
             this.addChild(dialogPopup);
-            this._dialougePopups.set(avatar.name, dialogPopup);
-
-
+            dialogPopup.visible = false; // Hide the dialog popup initially
+            this._dialougePopups.set(avatar.name, dialogPopup)
         });
     }
     public showNextDialogue(): void {
@@ -41,9 +38,17 @@ export class DialogManager extends Container {
         if (this._dialougePopups.has(dialog.name)) {
             const dialogPopup = this._dialougePopups.get(dialog.name);
             dialogPopup?.show(dialog.text);
+            this._dialogueIndex++;
+        }else{
+            this._dialogueIndex++;
+            this.showNextDialogue();
         }
-        this._dialogueIndex++;
+       
         if (this._dialogueIndex >= this._diaglogues.length) {
+            // Reset the index and hide all popups
+            this._dialougePopups.forEach(element => {
+                element.hide();
+            });
             this._dialogueIndex = 0;
         }
 
